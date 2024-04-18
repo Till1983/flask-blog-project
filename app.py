@@ -4,8 +4,10 @@ app = Flask(__name__)
 app.config.from_object('config')
 
 @app.route("/")
+@app.route("/home")
+@app.route("/index")
 def index():
-    return "Hello World!"
+    return render_template("index.html")
 
 
 
