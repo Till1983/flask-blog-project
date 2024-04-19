@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+   {% block content %} 
+    <section class="content">
+        <h1>{{ post.title }}</h1>
+        <p>by {{ post.author }}</p>
+        <p>{{ post.content }}</p>
+    </section>
+    {% endblock %}
+</body>
+</html>
