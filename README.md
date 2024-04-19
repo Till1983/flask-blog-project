@@ -4,8 +4,8 @@ This is a basic web development project by a beginner. I will be using HTML, CSS
 It contains a landing page, an about page, a contact page, and the blog page itself. Since the blog is meant to cover a variety of topics, readers
 will be able to filter the posts by topic according to their interests.
 
-The HTML files can be found in the **templates** folder. 
-The CSS files can be found in the **static** folder.
+The HTML files can be found in **app** in the **templates** folder. 
+The CSS files can be found in **app** in the **static** folder.
 
 Go through the following steps to install the requisite software and run the app:
 
@@ -41,5 +41,5 @@ python -m pip install -r requirements.txt
 
 6. ### Now you can run the server
 ```
-python app.py
+python run.py
 ```
