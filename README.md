@@ -16,7 +16,7 @@ git clone https://github.com/Till1983/flask-blog-project.git
 
 2. ### Move to the project folder
 ```
-cd project-se19-ss24
+cd flask-blog-project
 ```
 
 3. ### Create a virtual environment
