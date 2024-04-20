@@ -43,3 +43,7 @@ python -m pip install -r requirements.txt
 ```
 python run.py
 ```
+7. ### When you are done, you can deactivate the virtual environment
+```
+deactivate
+```
