@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template
+from .models import Author
 
 blueprint = Blueprint('users', __name__)
 
