@@ -3,6 +3,7 @@ from datetime import datetime
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(50))
     content = db.Column(db.String)
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id', name='article_topic'))
     author_id = db.Column(db.Integer, db.ForeignKey('author.id', name='article_author'))
