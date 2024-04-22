@@ -5,5 +5,4 @@ class Author(db.Model):
     name = db.Column(db.String(80))
     email = db.Column(db.String(80), unique=True)
     password = db.Column(db.String(80), unique=True)
-    #article_id = db.Column(db.Integer, db.ForeignKey('article.id'))
-    articles = db.relationship('Author', backref='article', lazy=True)
+    articles = db.relationship('Article', backref='article', lazy=True)
