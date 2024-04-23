@@ -2,7 +2,7 @@ from app.extensions.database import db
 from datetime import datetime
 
 class Article(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String(50))
     content = db.Column(db.String)
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id', name='article_topic'))
@@ -11,6 +11,6 @@ class Article(db.Model):
     topics = db.relationship('Topic', backref='author', lazy=True)
 
 class Topic(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(80))
     article_id = db.Column(db.Integer, db.ForeignKey('article.id', name='topic_article'))
