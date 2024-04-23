@@ -12,7 +12,8 @@ users = [
     {'name': 'John Doe', 'email': 'john.doe@email.com', 'password': 'mockpassword1'},
     {'name': 'Jane Doe', 'email': 'jane.doe@email.com', 'password': 'mockpassword2'},
     {'name': 'Alan Doe', 'email': 'alan.doe@email.com', 'password': 'mockpassword3'},
-    {'name': 'Adam Doe', 'email': 'adam.doe@email.com', 'password': 'mockpassword4'}
+    {'name': 'Adam Doe', 'email': 'adam.doe@email.com', 'password': 'mockpassword4'},
+    {'name': 'Lily Doe', 'email': 'lily.doe@email.com', 'password': 'mockpassword5'}
 ]
 
 # Add the content of the 'users' list to the Author table.
