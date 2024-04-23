@@ -5,5 +5,5 @@ __pycache__
 *.pyo
 *.pyd
 .DS_Store
-database.db
 migrations
+flask_mock.db
