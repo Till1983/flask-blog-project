@@ -5,7 +5,7 @@ db = SQLAlchemy()
 migrate = Migrate()
 
 class CRUDMixin():
-
+    # Taken form https://codecookies.xyz/flask-tutorial/v1/crud#update
     def save(self):
         db.session.add(self)
         db.session.commit()
