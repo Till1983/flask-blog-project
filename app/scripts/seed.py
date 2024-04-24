@@ -24,8 +24,8 @@ blog_post = [
     {'title': 'First Blogpost', 'content': 'This is the third blogpost', 'author_id': 2, 'date': datetime.utcnow()}
 ]
 
-# Add the content of the 'users' list to the Author table.
-# Since the id column has been set to autoincrement, it is not necessary to include it here.
+# Add the content of the 'users' and the 'blog_post' lists to the Author table.
+# Since the id columns have been set to autoincrement, it is not necessary to include them here.
 for user in users:
     entries = Author(
         name = user['name'],
