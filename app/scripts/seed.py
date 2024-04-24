@@ -16,6 +16,14 @@ users = [
     {'name': 'Lily Doe', 'email': 'lily.doe@email.com', 'password': 'mockpassword5'}
 ]
 
+
+
+blog_post = [
+    {'title': 'First Blogpost', 'content': 'This is the first blogpost', 'author_id': 1, 'date': datetime.utcnow()},
+    {'title': 'Second Blogpost', 'content': 'This is the second blogpost', 'author_id': 4, 'date': datetime.utcnow()},
+    {'title': 'First Blogpost', 'content': 'This is the third blogpost', 'author_id': 2, 'date': datetime.utcnow()}
+]
+
 # Add the content of the 'users' list to the Author table.
 # Since the id column has been set to autoincrement, it is not necessary to include it here.
 for user in users:
@@ -26,5 +34,18 @@ for user in users:
     )
 
     db.session.add(entries)
+
+db.session.commit()
+
+
+for post in blog_post:
+    entry = Article(
+        title = post['title'],
+        content = post['content'],
+        author_id = post['author_id'],
+        date = post['date']
+    )
+
+    db.session.add(entry)
 
 db.session.commit()
