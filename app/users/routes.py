@@ -25,8 +25,8 @@ def create_account():
         new_user = Author(name=name, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-
-        return redirect(url_for('users.login'))
+        message = "You have successfully created your account!"
+        return render_template('login.html', title="Login", message=message)
 
     return render_template('register.html', title="Create Your Account Here")
 
@@ -39,7 +39,8 @@ def login():
 
         if user:
             if check_password_hash(user.password, password):
-                return redirect(url_for('main_pages.index'))
+                message="You are now logged in!"
+                return render_template('login.html', title="Login", message=message)
             else:
                 return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
 
