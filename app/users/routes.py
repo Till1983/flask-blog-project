@@ -40,10 +40,15 @@ def login():
         if user:
             if check_password_hash(user.password, password):
                 message="You are now logged in!"
-                return render_template('login.html', title="Login", message=message)
+                return render_template('index.html', title="Login", message=message)
             else:
                 return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
 
         return render_template('login.html', title="Login", error="User not found. Please check for typos.")
 
     return render_template('login.html', title="Login")
+
+@blueprint.route('/logout')
+def logout():
+    session.clear()
+    return render_template('logout.html', title="Until next time!")
