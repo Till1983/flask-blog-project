@@ -1,11 +1,14 @@
 # Personal Blog - Web Dev Beginner Project
 
-This is a basic web development project by a beginner. I will be using HTML, CSS, and the Python Flask framework to create a basic blog.
-It contains a landing page, an about page, a contact page, and the blog page itself. Since the blog is meant to cover a variety of topics, readers
-will be able to filter the posts by topic according to their interests.
+This is a basic web development project by a beginner. I am using HTML, CSS, and the Python Flask framework to create a basic blog.
+It contains a landing page, an about page, a contact page, and the blog page itself. It is also possible to create an account and to log into it.
 
 The HTML files can be found in **app** in the **templates** folder. 
-The CSS files can be found in **app** in the **static** folder.
+The CSS file can be found in **app** in the **static** folder.
+
+You can find a deployed version of the project [here](https://flask-blog-project-y93o.onrender.com).
+
+## Basic Setup
 
 Go through the following steps to install the requisite software and run the app:
 
@@ -47,3 +50,66 @@ python run.py
 ```
 deactivate
 ```
+
+## Database setup
+
+Before you do anything else, create an `.env` file. Open the file and insert the following:
+```
+FLASK_ENV=development
+DATABASE_URL=sqlite:///your-database-name.db
+FLASK_APP=run.py
+```
+The *DATABASE_URL* is crucial for the setting up of the database. 
+
+### Setting up SQLite for Local Development
+
+To run this project locally, we recommend using SQLite for its simplicity and ease of setup. Follow the steps below to get started:
+
+### 1. Download SQLite
+
+- **macOS:** SQLite comes preinstalled on macOS. You can verify its installation by opening Terminal and typing `sqlite3`. If not installed, you can download the command-line shell tools from [SQLite Downloads](https://www.sqlite.org/download.html).
+
+- **Windows:** Download the SQLite command-line shell and tools from [SQLite Downloads](https://www.sqlite.org/download.html). Choose the appropriate precompiled binaries for your Windows version.
+
+- **Linux:** SQLite is often available in the package manager of most Linux distributions. You can install it using your package manager. For example, on Ubuntu, you can install it with `sudo apt-get install sqlite3`.
+
+### 2. Initiating the Database
+
+Once SQLite is installed, navigate to the root directory of the project in your terminal, activate the local environment, and run the following command to initialise a new SQLite database:
+
+```bash
+flask db init
+```
+
+### 3. Migrating Changes
+
+If there are any changes to the database schema or structure, you can execute these by using using the following command:
+```
+flask db migrate -m 'some message'
+```
+You can tailor the message to the specific change that you want to implement. In this case, you want to create the database schemata that have been predefined in **app/users/models.py** and **app/blogposts/models.py**. Execute:
+```
+flask db migrate -m 'create models'
+```
+
+### 4. Upgrading the Database
+
+To apply the changes finally, you execute the following command:
+```
+flask db upgrade
+```
+If you want to reverse a previous change that you have made, execute:
+```
+flask db downgrade
+```
+
+### 5. Connecting to the Database
+
+You can connect to your SQLite database using various tools such as Beekeeper Studio, DB Browser for SQLite, or any other SQLite database management tool.
+
+- **Beekeeper Studio:** Download and install Beekeeper Studio from [Beekeeper Studio](https://www.beekeeperstudio.io/). Open Beekeeper Studio and click on the "Add a Connection" button. Choose SQLite as the database type and browse to select your SQLite database file (`mydatabase.db`). Click "Connect" to establish a connection.
+
+- **DB Browser for SQLite:** Download and install DB Browser for SQLite from [DB Browser for SQLite](https://sqlitebrowser.org/). Open the application and go to "File" > "Open Database". Browse to select your SQLite database file (`mydatabase.db`). The database will open, and you can view and edit its contents.
+
+### 6. Inspect the Database
+Once you have connected to the database, take a look at the different tables and see how they have been populated with the content of the lists in **app/scripts/seed.py**
