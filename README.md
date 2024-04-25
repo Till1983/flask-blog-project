@@ -1,7 +1,7 @@
 # Personal Blog - Web Dev Beginner Project
 
-This is a basic web development project by a beginner. I am using HTML, CSS, and the Python Flask framework to create a basic blog.
-It contains a landing page, an about page, a contact page, and the blog page itself. It is also possible to create an account and to log into it.
+This is a basic web development project by a beginner. I am using **Python**, **HTML**, **CSS**, **Javascript** (for the client-side) and the **Flask** framework to create a basic blog.
+It contains a landing page, an about page, a contact page, and the blog page itself. It is also possible to create an account, to log into and out of it.
 
 The HTML files can be found in **app** in the **templates** folder. 
 The CSS file can be found in **app** in the **static** folder.
@@ -58,8 +58,10 @@ Before you do anything else, create an `.env` file. Open the file and insert the
 FLASK_ENV=development
 DATABASE_URL=sqlite:///your-database-name.db
 FLASK_APP=run.py
+SECRET_KEY="insert secret key"
 ```
-The *DATABASE_URL* is crucial for the setting up of the database. 
+The **DATABASE_URL** is crucial for the setting up of the database. You need to create your own secret key.
+If you include special characters in your secret key, you need to put them in quotation marks.
 
 ### Setting up SQLite for Local Development
 
@@ -113,3 +115,9 @@ You can connect to your SQLite database using various tools such as Beekeeper St
 
 ### 6. Inspect the Database
 Once you have connected to the database, take a look at the different tables and see how they have been populated with the content of the lists in **app/scripts/seed.py**
+
+## Testing
+At this point the project contains only unit tests, which you can find find in **app/users**. Run the following command in your terminal:
+```
+pytest
+```
