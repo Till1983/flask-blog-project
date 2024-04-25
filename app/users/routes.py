@@ -4,11 +4,14 @@ from .models import Author
 from app.extensions.database import db, migrate
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 blueprint = Blueprint('users', __name__)
+
 
 @blueprint.get('/register')
 def show_registration_form():
     return render_template('register.html', title="Create Your Account Here")
+
 
 @blueprint.post('/register')
 def create_account():
@@ -34,9 +37,11 @@ def create_account():
 
     return render_template('register.html', title="Create Your Account Here")
 
+
 @blueprint.get('/login')
 def show_login_form():
     return render_template('login.html', title="Login")
+
 
 @blueprint.post('/login')
 def login():
@@ -55,6 +60,7 @@ def login():
         return render_template('login.html', title="Login", error="User not found. Please check for typos.")
 
     return render_template('login.html', title="Login")
+
 
 @blueprint.get('/logout')
 def logout():
