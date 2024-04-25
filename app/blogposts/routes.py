@@ -1,10 +1,12 @@
 from flask import Blueprint, render_template
+from app.blogposts.models import Article, Topic
 
 blueprint = Blueprint('blogposts', __name__)
 
 @blueprint.route('/posts')
 def posts():
-    return render_template("posts.html", title="My Thoughts and Musings")
+    articles = Article.query.all()
+    return render_template("posts.html", title="Thoughts and Musings", articles=articles)
 
 @blueprint.route('/posts/<int:post_id>')
 def post(post_id):
