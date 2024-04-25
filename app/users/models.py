@@ -1,7 +1,7 @@
 from app.extensions.database import db, CRUDMixin
-from flask_login import USERMixin
+from flask_login import UserMixin
 
-class Author(db.Model, CRUDMixin, USERMixin):
+class Author(db.Model, CRUDMixin, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(80))
     email = db.Column(db.String(80), unique=True)
