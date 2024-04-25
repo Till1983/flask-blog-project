@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="content">
+    <form action="{{ url_for('blogposts.posts') }}" method="post">
+        <div class="container">
+            <h1>Write your post here!</h1>
+
+            <label for="name"><b>Your Name: </b></label>
+            <br>
+            <input type="text" placeholder="Enter Your Name" name="name" id="name" required>
+            <br>
+            <br>
+            <label for="title"><b>Title: </b></label>
+            <br>
+            <input type="text" placeholder="Enter Your Name" name="title" id="title" required>
+            <br>
+            <br>    
+            <label for="blogpost"><b>Your Post:</b></label>
+            <br>
+            <textarea id="blogpost" placeholder="Your Post" name="blogpost"></textarea> 
+            <br>
+            
+            <button type="submit" class="button">Create Post</button>
+        </div>
+    </form>
+</section>
+{% endblock %}
