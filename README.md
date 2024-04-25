@@ -100,7 +100,7 @@ To apply the changes finally, you execute the following command:
 ```
 flask db upgrade
 ```
-If you want to reverse a previous change that you have made, execute:
+If you want to reverse a previous change, execute:
 ```
 flask db downgrade
 ```
