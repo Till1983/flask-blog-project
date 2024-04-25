@@ -58,5 +58,5 @@ def login():
 
 @blueprint.get('/logout')
 def logout():
-    session.clear()
+    logout_user()
     return render_template('logout.html', title="Until next time!")
