@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template
 from . import blogposts, users, main_pages
 from app.extensions.database import db, migrate
+from app.extensions.authentication import login_manager
 from os import environ
 
 def create_app():
@@ -9,6 +10,7 @@ def create_app():
     app.secret_key = environ.get('SECRET_KEY')
     register_extensions(app)
     register_blueprints(app)
+    login_manager.init_app(app)
     return app
 
 def register_blueprints(app: Flask):
