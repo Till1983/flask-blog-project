@@ -1,4 +1,5 @@
-from app.extensions.database import db, CRUDMixin, USERMixin
+from app.extensions.database import db, CRUDMixin
+from flask_login import USERMixin
 
 class Author(db.Model, CRUDMixin, USERMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
