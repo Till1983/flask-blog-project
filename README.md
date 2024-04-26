@@ -6,7 +6,8 @@ It contains a landing page, an about page, a contact page, and the blog page its
 The HTML files can be found in **app** in the **templates** folder. 
 The CSS file can be found in **app** in the **static** folder.
 
-You can find a deployed version of the project [here](https://flask-blog-project-y93o.onrender.com).
+You can find a deployed version of the project [here](https://flask-blog-project-y93o.onrender.com). I'm using the free version.
+That means that instances spin down after prolonged inactivity. It will take a while for the link to load.
 
 ## Basic Setup
 
