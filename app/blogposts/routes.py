@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for
 from app.blogposts.models import Article, Topic
 from flask_login import login_required, login_user, logout_user, current_user
 
@@ -21,7 +21,6 @@ def get_create_post():
 @blueprint.before_request
 def check_login_status():
     if not current_user.is_authenticated:
-        flash('You need to log in to create a blogpost!', "error")
         return redirect(url_for('users.show_login_form'))
 
 
