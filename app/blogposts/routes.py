@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from app.blogposts.models import Article, Topic
 from flask_login import login_required, login_user, logout_user, current_user
+from app.extensions.database import db, migrate
 
 
 blueprint = Blueprint('blogposts', __name__)
@@ -26,7 +27,10 @@ def check_login_status():
 
 @blueprint.post('/create-post')
 def post_create_post():
-    name = request.form.get['name']
-    title = request.form.get['title']
-    blogpost = request.form.get['blogpost']
-    return render_template("create-post.html")
+    title = request.form['title']
+    content = request.form['blogpost']
+
+    new_post = Article(author=current_user, title=title, content=content)
+    db.session.add(new_post)
+    db.session.commit()
+    return redirect(url_for('blogposts.posts'))
