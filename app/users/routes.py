@@ -15,27 +15,20 @@ def show_registration_form():
 
 @blueprint.post('/register')
 def create_account():
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        password = request.form['psw']
-        repeat_password = request.form['rpsw']
+    name = request.form['name']
+    email = request.form['email']
+    password = request.form['psw']
+    repeat_password = request.form['rpsw']
 
-        # checks if 'password' and 'repeat_password' match
-        if password != repeat_password:
-            return render_template('register.html', title="Create Your Account Here", error="Password do not match!")
+    if password != repeat_password:
+        return render_template('register.html', title="Create Your Account Here", error="Password do not match!")
 
-        # hashing the password
-        hashed_password = generate_password_hash(password)
-
-        # adds new user to the database
-        new_user = Author(name=name, email=email, password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        message = "You have successfully created your account!"
-        return render_template('login.html', title="Login", message=message)
-
-    return render_template('register.html', title="Create Your Account Here")
+    hashed_password = generate_password_hash(password)
+    new_user = Author(name=name, email=email, password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+    message = "You have successfully created your account!"
+    return render_template('login.html', title="Login", message=message)
 
 
 @blueprint.get('/login')
@@ -45,24 +38,22 @@ def show_login_form():
 
 @blueprint.post('/login')
 def login():
-    if request.method == 'POST':
-        email = request.form['email']
-        password = request.form['psw']
-        user = Author.query.filter_by(email=email).first()
+    email = request.form['email']
+    password = request.form['psw']
+    user = Author.query.filter_by(email=email).first()
 
-        if user:
-            if check_password_hash(user.password, password):
-                message="You are now logged in!"
-                return render_template('index.html', title="Login", message=message)
-            else:
-                return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
+    if user:
+        if check_password_hash(user.password, password):
+            login_user(user)
+            message="You are now logged in!"
+            return render_template('index.html', title="Login", message=message)
+        else:
+            return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
 
-        return render_template('login.html', title="Login", error="User not found. Please check for typos.")
-
-    return render_template('login.html', title="Login")
+    return render_template('login.html', title="Login", error="User not found. Please check for typos.")
 
 
 @blueprint.get('/logout')
 def logout():
     logout_user()
-    return render_template('logout.html', title="Until next time!")
+    return render_template('index.html', title="Until next time!")
