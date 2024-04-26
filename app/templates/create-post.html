@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}Create Post{% endblock title %}
+{% block title %}
+    Create Post
+{% endblock title %}
 
 {% block content %}
     <div class="container">
@@ -13,6 +15,20 @@
             <textarea id="content" name="blogpost" required></textarea><br> 
             
             <button type="submit">Create Post</button>
+            <button onclick="copyText()">Copy text</button>
         </form>
     </div>
+
+    <script>
+        function copyText() {
+            var copy = document.getElementById("content");
+
+            copy.select();
+            copy.setSelectionRange(0, 99999);
+
+            navigator.clipboard.writeText(copy.value);
+
+            alert("Copied to clipboard!");
+        }
+    </script>
 {% endblock %}
