@@ -1,4 +1,5 @@
 # Test login and register pages for correct display
+# The code below has been adapted from https://codecookies.xyz/flask-tutorial/v1/unit-testing and modified.
 
 def test_register_display(client):
     '''tests the register page'''

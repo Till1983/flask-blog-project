@@ -1,4 +1,5 @@
 # Testing the routes of "main_pages" for correct display
+# The code below has been adapted from examples at https://codecookies.xyz/flask-tutorial/v1/unit-testing
 
 def test_index_display(client):
     '''tests the index page'''
