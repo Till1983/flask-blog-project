@@ -21,7 +21,7 @@ def get_create_post():
 
 @blueprint.before_request
 def check_login_status():
-    if not current_user.is_authenticated:
+    if request.endpoint != 'blogposts.posts' and not current_user.is_authenticated:
         return redirect(url_for('users.show_login_form'))
 
 
