@@ -1,6 +1,5 @@
 {% extends "base.html" %}
     {% block content %}
-    <section class="content">
         <h1>Blog Posts</h1>
         <p>Here you will find a variety of thoughts.</p>
         {% for article in articles %}
@@ -16,5 +15,4 @@
                 <p>Want to contribute? <a href="/login">Please log in</a> or <p> <a href="/register">create an account.</a></p></p>
             {% endif %}
           </div>
-    </section>
     {% endblock %}
