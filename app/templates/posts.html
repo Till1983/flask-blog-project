@@ -1,18 +1,19 @@
 {% extends "base.html" %}
-    {% block content %}
-        <h1>Blog Posts</h1>
-        <p>Here you will find a variety of thoughts.</p>
-        {% for article in articles %}
-            <h3>{{ article.title }}</h3>
-            <p>{{ article.author.name }} - {{ article.date.strftime('%Y-%m-%d') }}</p>
-            <p>{{ article.content }}</p>
-        {% endfor %}
+{% block content %}
+    <h1>Blog Posts</h1>
+    <p>Here you will find a variety of thoughts.</p>
+    
+    {% for article in articles %}
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.author.name }} - {{ article.date.strftime('%Y-%m-%d') }}</p>
+        <p>{{ article.content }}</p>
+    {% endfor %}
 
-        <div class="container signin">
-            {% if current_user.is_authenticated %}
-                <p>Want to contribute? <a href="/create-post">Create a post</a></p>
-            {% else %}
-                <p>Want to contribute? <a href="/login">Please log in</a> or <p> <a href="/register">create an account.</a></p></p>
-            {% endif %}
-          </div>
-    {% endblock %}
+    <div class="container signin">
+        {% if current_user.is_authenticated %}
+            <p>Want to contribute? <a href="/create-post">Create a post</a></p>
+        {% else %}
+            <p>Want to contribute? <a href="/login">Please log in</a> or <a href="/register">create an account.</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

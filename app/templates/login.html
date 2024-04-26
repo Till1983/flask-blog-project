@@ -1,27 +1,29 @@
 {% extends "base.html" %}
-    {% block content %}
-      {% if error %}
-        <p style="color: red;">{{ error }}</p>
-      {% endif %}
-        <h1>Log in</h1>
-        <div class="container">
-        <form action="/login" method="post">
-        <label for="email"><b>Email: </b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-    
-        <label for="psw"><b>Password: </b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-    
-        <button type="submit" class="button">Log in</button>
-        
-        <div id="loadingSpinner" style="display: none;">
-          <img src="{{ url_for('static', filename='fading-lines.gif') }}" alt="Loading...">
-        </div>
-        </form>
-        </div>
+{% block content %}
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+  
+  <h1>Log in</h1>
+  <div class="container">
+    <form action="/login" method="post">
+      <label for="email"><b>Email: </b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-      <div class="container register">
-        <p>Don't have an account yet? <a href="/register">Create one</a></p>
+      <label for="psw"><b>Password: </b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
 
-    <script src="{{ url_for('static', filename='login.js') }}"></script>
-    {% endblock %}
+      <button type="submit" class="button">Log in</button>
+
+      <div id="loadingSpinner" style="display: none;">
+        <img src="{{ url_for('static', filename='fading-lines.gif') }}" alt="Loading...">
+      </div>
+    </form>
+  </div>
+
+  <div class="container register">
+    <p>Don't have an account yet? <a href="/register">Create one</a></p>
+  </div>
+
+  <script src="{{ url_for('static', filename='login.js') }}"></script>
+{% endblock %}
