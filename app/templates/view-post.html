@@ -5,8 +5,8 @@
         <p>{{ article.content }}</p>
         {% if current_user == article.author %}
         <div class="container">
-            <p><a href="{{ url_for('blogposts.edit_post', post_id=article.id) }}">Edit</a></p>
-            <p><a href="{{ url_for('blogposts.delete_post', post_id=article.id) }}">Delete</a></p>
+            <a href="{{ url_for('blogposts.edit_post', post_id=article.id) }}">Edit</a>
+            <a href="{{ url_for('blogposts.delete_post', post_id=article.id) }}">Delete</a>
         </div>
         {% endif %}
     {% endblock %}
