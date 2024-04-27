@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+    {% if message %}
+    <p style="color: green;">{{ message }}</p>
+    {% endif %}
+
+
     <h1>Blog Posts</h1>
     <p>Here you will find a variety of thoughts.</p>
     
     {% for article in articles %}
-        <h3>{{ article.title }}</h3>
+        <h3><a href="{{ url_for('blogposts.view_post', post_id=article.id) }}">{{ article.title }}</a></h3>
         <p>{{ article.author.name }} - {{ article.date.strftime('%Y-%m-%d') }}</p>
         <p>{{ article.content }}</p>
     {% endfor %}
