@@ -4,3 +4,7 @@
 def test_post_display(client):
     response = client.get('/posts')
     assert response.status_code == 200
+
+def test_create_post(client):
+    response = client.get('/create-post')
+    assert response.status_code == 302
