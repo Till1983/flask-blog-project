@@ -46,7 +46,7 @@ def login():
         if check_password_hash(user.password, password):
             login_user(user)
             message="You are now logged in!"
-            return render_template('index.html', title="Login", message=message)
+            return render_template('success.html', title="Welcome!", message=message)
         else:
             return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
 
@@ -56,4 +56,4 @@ def login():
 @blueprint.get('/logout')
 def logout():
     logout_user()
-    return render_template('index.html', title="Until next time!")
+    return render_template('logout.html', title="Until next time!", message="You are now logged out")
