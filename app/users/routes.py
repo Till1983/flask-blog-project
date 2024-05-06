@@ -49,8 +49,9 @@ def login():
             return render_template('success.html', title="Welcome!", message=message)
         else:
             return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
-
-    return render_template('login.html', title="Login", error="User not found. Please check for typos.")
+    
+    if not user:
+        return render_template('login.html', title="Login", error="User not found. Please check for typos.")
 
 
 @blueprint.get('/logout')
