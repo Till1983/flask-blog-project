@@ -33,9 +33,7 @@ def test_login(client):
         'psw': 'password6'
     }
     response = client.post('/login', data=data, follow_redirects=True)
-    print(response.data)
     assert response.status_code == 200, "Expected status code 200, but got {}".format(response.status_code)
-    #assert b'You are now logged in!' in response.data, "Login success message not found in response data"
 
 def test_logout(client):
     '''Test user logout'''
