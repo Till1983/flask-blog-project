@@ -105,6 +105,7 @@ If you want to reverse a previous change, execute:
 ```
 flask db downgrade
 ```
+<!-- 5. was created with the help of ChatGPT -->
 
 ### 5. Connecting to the Database
 
