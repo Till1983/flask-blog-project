@@ -5,6 +5,7 @@ def test_post_display(client):
     """Test if the posts route displays correctly."""
     response = client.get('/posts')
     assert response.status_code == 200
+    assert b'Blog Posts' in response.data
 
 
 def test_get_create_post(client):
