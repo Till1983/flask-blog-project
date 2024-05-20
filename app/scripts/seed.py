@@ -1,5 +1,5 @@
 from app.app import create_app
-from app.blogposts.models import Article, Topic
+from app.blogposts.models import Article
 from app.users.models import Author
 from app.extensions.database import db
 from datetime import datetime

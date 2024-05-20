@@ -1,68 +1,56 @@
-from flask import Blueprint, render_template, request, redirect, url_for, session, flash
-from flask_login import login_user, logout_user, login_required, current_user, UserMixin
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask_login import login_user, logout_user, login_required, current_user
 from .models import Author
-from app.extensions.database import db, migrate
+from app.extensions.database import db
 from werkzeug.security import generate_password_hash, check_password_hash
-
 
 blueprint = Blueprint('users', __name__)
 
+@blueprint.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['psw']
+        repeat_password = request.form['rpsw']
 
-@blueprint.get('/register')
-def show_registration_form():
+        if password != repeat_password:
+            return render_template('register.html', title="Create Your Account Here", error="Passwords do not match!")
+
+        hashed_password = generate_password_hash(password)
+        new_user = Author(name=name, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        message = "You have successfully created your account!"
+        return render_template('login.html', title="Login", message=message)
+
     return render_template('register.html', title="Create Your Account Here")
 
-
-@blueprint.post('/register')
-def create_account():
-    name = request.form['name']
-    email = request.form['email']
-    password = request.form['psw']
-    repeat_password = request.form['rpsw']
-
-    if password != repeat_password:
-        return render_template('register.html', title="Create Your Account Here", error="Password do not match!")
-
-    hashed_password = generate_password_hash(password)
-    new_user = Author(name=name, email=email, password=hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
-    message = "You have successfully created your account!"
-    return render_template('login.html', title="Login", message=message)
-
-
-@blueprint.get('/login')
-def show_login_form():
-    return render_template('login.html', title="Login")
-
-
-@blueprint.post('/login')
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
-    email = request.form['email']
-    password = request.form['psw']
-    user = Author.query.filter_by(email=email).first()
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['psw']
+        user = Author.query.filter_by(email=email).first()
 
-    if user:
-        if check_password_hash(user.password, password):
+        if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for('users.login_success'))
         else:
-            return render_template('login.html', title="Login", error="Incorrect email or password. Please try again.")
-    
-    if not user:
-        return render_template('login.html', title="Login", error="User not found. Please check for typos.")
+            error = "Incorrect email or password. Please try again." if user else "User not found. Please check for typos."
+            return render_template('login.html', title="Login", error=error)
 
+    return render_template('login.html', title="Login")
 
-@blueprint.get('/welcome')
+@blueprint.route('/welcome')
 def login_success():
     return render_template('success.html', title="Welcome!")
 
-
-@blueprint.get('/logout')
+@blueprint.route('/logout')
+@login_required
 def logout():
     logout_user()
     return render_template('logout.html', title="Until next time!", message="You are now logged out")
-
 
 @blueprint.route('/run-seed-user')
 def run_seed_user():
