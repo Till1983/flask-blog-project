@@ -21,7 +21,7 @@ def get_create_post():
 
 @blueprint.before_request
 def check_login_status():
-    if request.endpoint not in ['blogposts.posts', 'blogposts.view_post'] and not current_user.is_authenticated:
+    if request.endpoint not in ['blogposts.posts', 'blogposts.view_post', 'blogposts.run_seed_article'] and not current_user.is_authenticated:
         return redirect(url_for('users.show_login_form'))
 
 
@@ -66,11 +66,11 @@ def delete_post(post_id):
     return redirect(url_for('blogposts.posts'))
 
 
-#@blueprint.route('/run-seed-article')
-#def run_seed_article():
- #   if not Article.query.filter_by(title='First Blogpost').first():
-  #      import app.scripts.seed
-   #     return 'Article seed completed.'
-    #else:
-     #   return 'Article already exists'
+@blueprint.route('/run-seed-article')
+def run_seed_article():
+    if not Article.query.filter_by(title='First Blogpost').first():
+        import app.scripts.seed
+        return 'Article seed completed.'
+    else:
+        return 'Article already exists'
         
