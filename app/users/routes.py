@@ -70,4 +70,4 @@ def run_seed_user():
         import app.scripts.seed
         return 'User seed completed'
     else:
-        'No user to return.'
+        return 'User already exists'
