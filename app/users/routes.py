@@ -62,3 +62,12 @@ def login_success():
 def logout():
     logout_user()
     return render_template('logout.html', title="Until next time!", message="You are now logged out")
+
+
+@blueprint.route('/run-seed-user')
+def run_seed_user():
+    if not Author.query.filter_by(name="John Doe").first():
+        import app.scripts.seed
+        return 'User seed completed'
+    else:
+        'No user to return.'

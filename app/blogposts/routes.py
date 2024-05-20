@@ -64,3 +64,12 @@ def delete_post(post_id):
     db.session.delete(article)
     db.session.commit()
     return redirect(url_for('blogposts.posts'))
+
+
+@blueprint.route('/run-seed-article')
+def run_seed_article():
+    if not Article.query.filter_by(title='First Blogpost').first():
+        import app.scripts.seed
+        return 'Article seed completed.'
+    else:
+        'No article to return.'
