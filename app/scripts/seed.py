@@ -17,13 +17,6 @@ users = [
 ]
 
 
-
-blog_post = [
-    {'title': 'First Blogpost', 'content': 'This is the first blogpost', 'author_id': 1, 'date': datetime.utcnow()},
-    {'title': 'Second Blogpost', 'content': 'This is the second blogpost', 'author_id': 4, 'date': datetime.utcnow()},
-    {'title': 'First Blogpost', 'content': 'This is the third blogpost', 'author_id': 2, 'date': datetime.utcnow()}
-]
-
 # Add the content of the 'users' and the 'blog_post' lists to the Author table.
 # Since the id columns have been set to autoincrement, it is not necessary to include them here.
 for user in users:
@@ -36,6 +29,13 @@ for user in users:
     db.session.add(entries)
 
 db.session.commit()
+
+
+blog_post = [
+    {'title': 'First Blogpost', 'content': 'This is the first blogpost', 'author_id': 1, 'date': datetime.utcnow()},
+    {'title': 'Second Blogpost', 'content': 'This is the second blogpost', 'author_id': 4, 'date': datetime.utcnow()},
+    {'title': 'First Blogpost', 'content': 'This is the third blogpost', 'author_id': 2, 'date': datetime.utcnow()}
+]
 
 
 for post in blog_post:
