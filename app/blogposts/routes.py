@@ -66,11 +66,11 @@ def delete_post(post_id):
     return redirect(url_for('blogposts.posts'))
 
 
-@blueprint.route('/run-seed-article')
-def run_seed_article():
-    if not Article.query.filter_by(title='First Blogpost').first():
-        import app.scripts.seed
-        return 'Article seed completed.'
-    else:
-        return 'Article already exists'
+#@blueprint.route('/run-seed-article')
+#def run_seed_article():
+ #   if not Article.query.filter_by(title='First Blogpost').first():
+  #      import app.scripts.seed
+   #     return 'Article seed completed.'
+    #else:
+     #   return 'Article already exists'
         
