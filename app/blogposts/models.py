@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Article(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(50))
+    title = db.Column(db.String(100))
     content = db.Column(db.String(10000))
     topic_id = db.Column(db.Integer, db.ForeignKey('topic.id', name='article_topic'))
     author_id = db.Column(db.Integer, db.ForeignKey('author.id', name='article_author'))
