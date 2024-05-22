@@ -44,7 +44,7 @@ def test_check_login_status(client):
         assert response.status_code == 302
 
 
-'''def test_view_post(client):
+def test_view_post(client):
     """Test the POST request to view a post route"""
     existing_post_id = 1
     response = client.get(f'/post/{existing_post_id}')
@@ -52,7 +52,7 @@ def test_check_login_status(client):
 
     non_existing_post_id = 999
     response = client.get(f'/post/{non_existing_post_id}')
-    assert response.status_code == 404'''
+    assert response.status_code == 404
 
 
 def test_edit_post_get(client):
