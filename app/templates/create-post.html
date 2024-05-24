@@ -10,15 +10,17 @@
             <label for="blogpost">Content:</label><br> 
             <textarea id="blogpost" name="blogpost" required></textarea><br> 
             
-            <button type="submit">Create Post</button>
-            <button onclick="copyText()">Copy text</button>
+            <div class="form-buttons">
+                <button type="submit">Create Post</button>
+                <button type="button" onclick="copyText()">Copy Text</button>
+            </div>
         </form>
     </div>
     
     <!--The following code was adapted from W3schools. You can find the original version here: https://www.w3schools.com/howto/howto_js_copy_clipboard.asp-->
     <script>
         function copyText() {
-            var copy = document.getElementById("content");
+            var copy = document.getElementById("blogpost");
 
             copy.select();
             copy.setSelectionRange(0, 99999);
