@@ -18,7 +18,9 @@
       <label for="rpsw"><b>Repeat Password: </b></label>
       <input type="password" placeholder="Repeat Password" name="rpsw" id="rpsw" required>
 
-      <button type="submit" class="button">Register</button>
+      <div class="form-buttons">
+        <button type="submit" class="button">Register</button>
+      </div>
 
       <div id="loadingSpinner" style="display: none;">
         <img src="{{ url_for('static', filename='fading-lines.gif') }}" alt="Loading...">
