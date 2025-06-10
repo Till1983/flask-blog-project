@@ -66,6 +66,22 @@ def test_login_success(client):
 
 def test_logout(client):
     '''Test user logout'''
-    response = client.get('/logout', follow_redirects=True)
-    assert response.status_code == 200
-    assert b'Until next time!' in response.data
+    # Create a user to log in
+    hashed_password = generate_password_hash('password123')
+    new_user = Author(name='Test User', email='testuser@email.com', password=hashed_password)
+    db.session.add(new_user)
+    db.session.commit()
+
+    # Log in the user to create a session
+    with client:
+        client.post('/login', data=dict(
+            email='testuser@email.com',
+            psw='password123'
+        ), follow_redirects=True)
+        # Test logout
+        response = client.get('/logout', follow_redirects=True)
+
+        # assert that the logout was successful
+        assert response.status_code == 200
+        assert b'You are now logged out' in response.data
+        assert b'See you soon!' in response.data
